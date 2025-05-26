@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { onBeforeMount, computed } from 'vue';
+import {onBeforeMount, computed} from 'vue';
 import { userState } from '@states/user';
-import { type Gender } from '@/types/state';
 
 const props = defineProps<{
   label: string
   typeInput: string
 }>()
 
-const key = props.label.toLowerCase()
+const key = props.label.toLowerCase() as keyof typeof userState;
+
 
 onBeforeMount(() => {
   if (!(key in userState)) {
@@ -16,17 +16,30 @@ onBeforeMount(() => {
   }
 })
 
-const modelValue = computed({
-  get: () : string | Gender => userState[key],
-  set: (val) => {
-    userState[key] = val
-  }
-})
+function getUserState<K extends keyof typeof userState>(key: K) {
+  return computed({
+    get: () => userState[key],
+    set: async (val) => {
+      userState[key] = val;
+      // console.log(userState[key], 'before state has been set and re - render');
+      // await nextTick()
+      // console.log(userState[key], 'after state has been set and re - render');
+    }
+  });
+}
+
+const modelValue = getUserState(key as keyof typeof userState);
+
+// const onChange = (e : Event) => {
+//   const { name, value } = e.target as HTMLInputElement;
+//   console.log(`${name}: ${value}`);
+// };
+
 </script>
 
 <template>
-  <div>
-    <label :for="key" class="block text-sm/6 font-medium text-gray-900">
+  <div class="mb-2">
+    <label :for="key" class="block text-sm/6 font-medium text-gray-300 text-left">
       {{ props.label }}
     </label>
     <div class="mt-2">
@@ -35,9 +48,13 @@ const modelValue = computed({
           :type="props.typeInput"
           :name="key"
           :id="key"
+          ahh ah suki yess
+          penjual balon!!!!
           v-model="modelValue"
-          class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-        />
+          class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" />
+        <!--          @change="onChange"-->
+        <!--          @keyup="onChange"-->
+<!--        />-->
       </div>
     </div>
   </div>
