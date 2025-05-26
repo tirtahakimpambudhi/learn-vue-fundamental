@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { type increment } from "@/types/state"
 
-const props = defineProps<{ count: increment }>()
+const props = defineProps<{ count: number }>()
 const emit = defineEmits<{
   (e: 'increment'): void;
 }>()

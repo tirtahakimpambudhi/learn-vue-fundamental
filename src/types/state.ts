@@ -1,3 +1,7 @@
-import { type Ref} from "vue";
+export type Gender = 'female' | 'male';
 
-export type increment = Ref<number>
+export type user = {
+    name: string,
+    email: string,
+    gender: Gender
+};

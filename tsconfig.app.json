@@ -8,7 +8,9 @@
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
       "@types/*": ["./types/*"],
-      "@pages/*": ["./pages/*"]
+      "@pages/*": ["./pages/*"],
+      "@states/*": ["./states/*"],
+      "@handlers/*": ["./handlers/*"]
     },
 
     /* Linting */

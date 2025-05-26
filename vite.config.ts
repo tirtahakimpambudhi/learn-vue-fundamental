@@ -20,6 +20,8 @@ export default defineConfig({
           "@assets": resolve(__dirname, "./src/assets"),
           "@types": resolve(__dirname,"./src/types"),
           "@pages": resolve(__dirname, "./src/pages"),
+          "@states": resolve(__dirname, "./src/states"),
+          "@handlers": resolve(__dirname, "./src/handlers")
       }
     }
 })

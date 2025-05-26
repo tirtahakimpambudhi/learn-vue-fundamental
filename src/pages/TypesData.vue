@@ -1,19 +1,26 @@
 <script setup lang="ts">
+  import TypeData from '@components/TypeData.vue';
+  import { type myTuple } from '@/types/alias';
 
-  const number : number = 1;
-  const string : string = "this is a string";
-  const boolean : boolean = true;
+  const myNumber : number = 1;
+  const myString : string = "this is a string";
+  const myBoolean : boolean = true;
 
-  const arr : string[] = ["a", "b", "c"];
-  const arrReadOnly :ReadonlyArray<string,3> = ["a","b","c"];
+  const myArr : string[] = ["a", "b", "c"];
+  const tuple :myTuple = ["foo", "bar", 100, true];
 
-  arrReadOnly.push("d");
-  console.log(arrReadOnly);
 </script>
 
 <template>
-  <h1> Type Data Number</h1>
-  <p> Value for variable number  : {{ number }} </p>
+  <TypeData :data="myNumber" :nameVariable="'myNumber'" />
+  <br>
+  <TypeData :data="myString" :nameVariable="'myString'" />
+  <br>
+  <TypeData :data="myBoolean" :nameVariable="'myBoolean'" />
+  <br>
+  <TypeData :data="myArr" :nameVariable="'myArr'" />
+  <br>
+  <TypeData :data="tuple" :nameVariable="'tuple'" />
 </template>
 
 <style scoped>

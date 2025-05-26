@@ -9,7 +9,7 @@ const count = ref<number>(0)
 
 <template>
 <!--  TODO: FIX THISS -->
-  <ButtonIncrement :count="ref(0)" @increment="() => {count++}" />
+  <ButtonIncrement :count="count" @increment="() => {count++}" />
 </template>
 
 <style scoped>
