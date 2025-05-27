@@ -6,17 +6,19 @@ const props = defineProps<{
   nameVariable: string;
 }>();
 
+const dataReadOnly = props.data as Readonly<typeData>;
+
 function printTypeData(data : typeData ): string {
   return Array.isArray(data) ? 'array' : typeof data;
 }
 </script>
 
 <template>
-  <h4>Type {{ props.nameVariable }}: {{ printTypeData(data) }}</h4>
+  <h4>Type {{ props.nameVariable }}: {{ printTypeData(dataReadOnly) }}</h4>
 
   <template v-if="Array.isArray(props.data)">
     <ul>
-      <li v-for="(item, index) in props.data" :key="index">
+      <li v-for="(item, index) in dataReadOnly" :key="index">
         <h4> Type item - {{ index + 1 }} : {{ printTypeData(item) }}</h4>
         <p> Value for item - {{ index + 1 }} : {{ item }}</p>
       </li>
@@ -24,7 +26,7 @@ function printTypeData(data : typeData ): string {
   </template>
 
   <template v-else>
-    <p>Value for {{ props.nameVariable }}: {{ props.data }}</p>
+    <p>Value for {{ props.nameVariable }}: {{ dataReadOnly }}</p>
   </template>
 </template>
 
