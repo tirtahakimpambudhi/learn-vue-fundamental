@@ -12,7 +12,19 @@ export type Person = {
     lastName: string;
 }
 
+export type TodoCategory = 'Pribadi' | 'Belajar' | 'Pekerjaan' | 'Kesehatan';
 
+export type TodoPriority = 'Rendah' | 'Sedang' | 'Tinggi' | 'Urgent';
+
+export type TodoItem = {
+    title: string;
+    category: TodoCategory;
+    priority: TodoPriority;
+    description: string;
+    deadline: number;
+    created_at: number;
+    updated_at: number;
+}
 
 
 // INTERFACE
