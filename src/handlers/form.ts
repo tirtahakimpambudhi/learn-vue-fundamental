@@ -1,6 +1,8 @@
 import { userState } from "@states/user";
-import { isSubmitState} from "@states/isSubmit.ts";
-import {personState} from "@states/person.ts";
+import { isSubmitState} from "@states/isSubmit";
+import {personState} from "@states/person";
+import {isSubmitTodoState} from "@states/isSubmitTodo";
+import {todoListState} from "@states/todoList";
 
 export const addUser: ( _: Event ) => void = (_) => {
     isSubmitState.value = true;
@@ -18,4 +20,14 @@ export const addPerson: ( _: Event ) => void = (_) => {
     setTimeout(() => {
         isSubmitState.value = false;
     }, 3000)
+}
+
+
+export const addTodo : (_: Event) => void = () => {
+    isSubmitTodoState.value = true;
+    try {
+        todoListState.push()
+    } catch (error) {
+        console.log(error);
+    }
 }
