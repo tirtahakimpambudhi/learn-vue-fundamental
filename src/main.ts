@@ -9,8 +9,11 @@ import './style.css'
 // createApp(Composition).mount('#app')
 
 
-import TypesData from "@pages/TypesData.vue";
+// import TypesData from "@pages/TypesData.vue";
+//
+// createApp(TypesData).mount(
+//     '#app'
+// )
 
-createApp(TypesData).mount(
-    '#app'
-)
+import Form from "@pages/Form.vue";
+createApp(Form).mount('#app');
