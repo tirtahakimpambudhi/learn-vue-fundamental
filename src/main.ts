@@ -15,5 +15,6 @@ import './style.css'
 //     '#app'
 // )
 
-import Form from "@pages/Form.vue";
-createApp(Form).mount('#app');
+// import Form from "@pages/Form.vue";
+import Computed from "@pages/Computed.vue";
+createApp(Computed).mount('#app');
