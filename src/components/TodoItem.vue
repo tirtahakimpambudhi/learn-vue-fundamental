@@ -1,5 +1,16 @@
 <script setup lang="ts">
 
+import type {TodoItem} from "@/types/state";
+
+const props = defineProps<{
+  todoItem: TodoItem
+}>();
+
+const emits = defineEmits<{
+  (e: 'update'): void;
+  (e: 'delete'): void;
+}>()
+
 </script>
 
 <template>
