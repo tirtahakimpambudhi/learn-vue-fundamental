@@ -4,6 +4,20 @@ import TodoForm from "@components/TodoForm.vue";
 import TodoSearch from "@components/TodoSearch.vue";
 import TodoItem from "@components/TodoItem.vue";
 import TodoProgress from "@components/TodoProgress.vue";
+import {onMounted, watch} from "vue";
+import {todoListState} from "@states/todoList";
+
+import useTodolist from "@states/useTodolist";
+
+const { loadTodolist } = useTodolist();
+
+onMounted(() => {
+  loadTodolist();
+});
+
+
+
+
 </script>
 
 <template>
@@ -20,8 +34,16 @@ import TodoProgress from "@components/TodoProgress.vue";
     <!-- Task List -->
     <div class="space-y-4">
       <!-- Task Item -->
-      <TodoItem>
-      </TodoItem>
+      <template v-if="todoListState.length > 0">
+        <TodoItem
+            v-for="item in todoListState"
+            :key="item.id"
+            :todo="item"
+        />
+      </template>
+      <template v-else>
+        Tidak ada yang harus dikerjakan
+      </template>
     </div>
 
     <!-- Progress Section -->
