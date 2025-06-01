@@ -9,6 +9,8 @@
   const myArr : string[] = ["a", "b", "c"];
   const tuple :myTuple = ["foo", "bar", 100, true];
 
+  const arrReadOnly :ReadonlyArray<string> = ["a", "b", "c"];
+
 </script>
 
 <template>
@@ -21,6 +23,8 @@
   <TypeData :data="myArr" :nameVariable="'myArr'" />
   <br>
   <TypeData :data="tuple" :nameVariable="'tuple'" />
+  <br>
+  <TypeData :data="arrReadOnly" :nameVariable="'arrReadOnly'" />>
 </template>
 
 <style scoped>
