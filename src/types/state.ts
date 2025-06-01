@@ -26,6 +26,13 @@ export type TodoItem = {
     updated_at: number;
 }
 
+export type TodoError = {
+    title?: string;
+    category?: string;
+    priority?: string;
+    description?: string;
+    deadline?: string;
+}
 
 // INTERFACE
 // CANNOT PRIMITIVE TYPE
