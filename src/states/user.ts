@@ -1,8 +1,9 @@
 import { type user } from '@/types/state';
-import {reactive} from 'vue';
+import {type Reactive, reactive} from 'vue';
 
-export const userState = reactive<user>({
+export const userState :Reactive<user> = reactive<user>({
     name: '',
     email: '',
     gender: 'male'
 });
+
