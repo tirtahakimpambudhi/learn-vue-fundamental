@@ -16,5 +16,6 @@ import './style.css'
 // )
 
 // import Form from "@pages/Form.vue";
-import Computed from "@pages/Computed.vue";
-createApp(Computed).mount('#app');
+// import Computed from "@pages/Computed.vue";
+import Todolist from "@pages/Todolist.vue";
+createApp(Todolist).mount('#app');
