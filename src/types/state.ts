@@ -17,6 +17,7 @@ export type TodoCategory = 'Pribadi' | 'Belajar' | 'Pekerjaan' | 'Kesehatan';
 export type TodoPriority = 'Rendah' | 'Sedang' | 'Tinggi' | 'Urgent';
 
 export type TodoItem = {
+    id: string;
     title: string;
     category: TodoCategory;
     priority: TodoPriority;
@@ -34,9 +35,12 @@ export type TodoError = {
     deadline?: string;
 }
 
-// INTERFACE
-// CANNOT PRIMITIVE TYPE
-// CAN MERGE OR OVERRIDE
-// Native Support Extends
+
+export type APIError<T> = {
+    types: string;
+    action: T;
+    version: number;
+    message: string;
+}
 
 
