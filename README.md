@@ -6,5 +6,4 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 
 
 # TODO
- 1. Fixing bug on the form pages
- 2. Fixing type on the form state and other
+ 1. Rewrite [CodeInAja](https://github.com/CodeInAJAX/frontend.git) to VUE JS for Front End Framework
