@@ -6,25 +6,27 @@ export default function useHeroCourseCard(value : HeroCourseCard| null) {
         title: value?.title ?? '',
         banner: value?.banner ?? '',
         price: value?.price ?? 0,
-        percentDiscon: value?.percentDiscon ?? 0,
-        currency: value?.currency ?? 'IDR'
+        percentDiscount: value?.percentDiscount ?? 0,
+        currency: value?.currency ?? 'IDR',
+        timeDiscount: new Date()
     });
     
     const setCard = (value: HeroCourseCard) => {
         card.title = value.title;
         card.price = value.price;
         card.banner = value.banner
-        card.percentDiscon = value.percentDiscon;
+        card.percentDiscount = value.percentDiscount;
         card.currency = value.currency
+        card.timeDiscount = value.timeDiscount;
     };
 
-    const disconPrice = computed((): number => {
-        return card.price - (card.price * card.percentDiscon / 100);
+    const discountPrice = computed((): number => {
+        return card.price - (card.price * card.percentDiscount / 100);
     });
 
     return {
         card,
         setCard,
-        disconPrice,
+        discountPrice,
     };
 }
