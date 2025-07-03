@@ -4,6 +4,7 @@ export type HeroCourseCard = {
     title: string,
     banner: string,
     price: number,
-    percentDiscon: number,
-    currency: Currency
+    percentDiscount: number,
+    currency: Currency,
+    timeDiscount: Date,
 }
