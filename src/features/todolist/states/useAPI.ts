@@ -4,10 +4,10 @@ import * as api from '@todolist/api/mockV1';
 import type { APIError } from '@todolist/types/APIError';
 import type { Entity } from '@todolist/types/Entity';
 import type { Category } from '@todolist/types/Category';
-import useLoading from '@states/useLoading';
+import useToggle from '@states/useToggle';
 
 export default function useAPI() {
-    const { isLoading, setLoading } = useLoading(false);
+    const { state: isLoading, setTrue: startLoading, setFalse: endLoading } = useToggle();
 
     const todolist :Reactive<List> = reactive<List>([]);
 
@@ -18,7 +18,7 @@ export default function useAPI() {
     })
 
     const loadTodolist = async () => {
-        setLoading(true)
+        startLoading()
         try {
             const data = await api.getAll()
             const transformed = data.map(item => ({
@@ -36,7 +36,7 @@ export default function useAPI() {
                 errors.message = error?.message || 'Sesuatu ada yang salah tolong coba lagi'
             }
         } finally {
-            setLoading(false)
+            endLoading()
         }
     }
 
@@ -54,7 +54,7 @@ export default function useAPI() {
     }
 
     const filterTodoByCategory = async (value: Category | null | 'Selesai') => {
-        setLoading(true)
+        startLoading()
         try {
             let data;
             if (value === null) {
@@ -77,12 +77,12 @@ export default function useAPI() {
             errors.message = error.message || 'Sesuatu ada yang salah, tolong coba lagi';
             }
         } finally {
-            setLoading(false)
+            endLoading()
         }
     };
 
     const filterTodoBySearch = async (value: string) => {
-        setLoading(true)
+        startLoading()
         try {
             let data;
             if (value === '') {
@@ -103,7 +103,7 @@ export default function useAPI() {
             errors.message = error.message || 'Sesuatu ada yang salah, tolong coba lagi';
             }
         } finally {
-            setLoading(false)
+            endLoading()
         }
     };
 
