@@ -7,7 +7,7 @@ import { schema } from "@todolist/validation/schema";
 import {v4 as uuidv4} from "uuid";
 import { useAPIStore } from "@todolist/stores/useAPIStore";
 import type { Entity } from "../types/Entity";
-import useSubmit from "@/states/useSubmit";
+import useToggle from "@states/useToggle";
 
 export default function useForm() {
 
@@ -27,10 +27,11 @@ export default function useForm() {
 
     const errors = reactive<ZodError>({});
 
-    const { isSubmit, setSubmit } = useSubmit(false);
+    // const { isSubmit, setSubmit } = useSubmit(false);
+    const { state: isSubmit, setTrue: startSubmit, setFalse: endSubmit } = useToggle(false);
 
     const onSubmit = async (_: Event) => {
-        setSubmit(true)
+        startSubmit()
         try {
             // Validation the value form
             schema.parse(form)
@@ -74,7 +75,7 @@ export default function useForm() {
                 handleZodError(error, errors );
             }
         } finally {
-            setSubmit(false);
+            endSubmit();
         }
     }
     
