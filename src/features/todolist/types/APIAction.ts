@@ -1,0 +1,1 @@
+export type APIAction = 'getAll' | 'getById' | 'create' | 'update' | 'destroy' | 'filterByCategory' | 'filterSearch';
