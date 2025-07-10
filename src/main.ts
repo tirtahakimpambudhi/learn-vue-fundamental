@@ -4,6 +4,7 @@ import { createPinia } from 'pinia';
 import App from '@pages/App.vue';
 import todolistRoute from '@todolist/route/index';
 import learnRoute from '@learn/route/index';
+import codeinajaUsersRouter from '@codeinaja-users/route/index';
 import { createWebHistory, createRouter } from 'vue-router';
 import NotFound from '@/pages/NotFound.vue';
 import Home from '@pages/Home.vue';
@@ -23,6 +24,7 @@ const router = createRouter({
         },
         ...todolistRoute,
         ...learnRoute,
+        ...codeinajaUsersRouter,
         {
             path: '/:pathMatch(.*)*',
             component: NotFound,
