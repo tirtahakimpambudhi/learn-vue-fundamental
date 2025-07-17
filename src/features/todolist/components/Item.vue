@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import type {Entity} from "@todolist/types/Entity";
-import { computed,reactive,watch } from "vue";
+import { computed } from "vue";
 
 const props = defineProps<{
   item: Entity
