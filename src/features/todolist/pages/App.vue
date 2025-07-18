@@ -9,12 +9,11 @@ import Progress from '@todolist/components/Progress.vue';
 import Filter from '@/features/todolist/components/Filter.vue';
 import Content from '@todolist/components/Content.vue';
 import { onMounted, watch } from 'vue';
-import type { Category } from '@todolist/types/Category';
 import type { Entity } from '@todolist/types/Entity';
 import {ref} from 'vue'
 
-const {errors: apiError, loadTodolist, todolist, isLoading, filterTodoByCategory, filterTodoBySearch, updateTodolist, deleteTodolist } = useAPIStore()
-const { isSubmit,errors: validationError, form,onSubmit  } = useFormStore();
+const {errors: apiError, loadTodolist, todolist, isLoading, onDeleteTodolist, onFilterCategoryTodolist, onFilterSearchTodolist, onUpdateTodolist} = useAPIStore()
+const { isSubmit,errors: validationError, form, onSubmit, fillForm  } = useFormStore();
 
 onMounted(() => {
   loadTodolist()
@@ -30,29 +29,7 @@ watch(todolist, () => {
   immediate: true
 })
 
-const onFilterCategory = async (value :Category|null|'Selesai') => {
-  await filterTodoByCategory(value)
-}
 
-const onFilterSearch = async (value : string) => {
-  await filterTodoBySearch(value)
-}
-
-const onUpdate = async (item :Entity) => {
-  await updateTodolist(item.id, item);
-}
-
-
-const onDelete = async (item :Entity) => {
-  await deleteTodolist(item.id);
-}
-
-const onUpdateForm = async (item :Entity) => {
-  item.updatedAt = new Date()
-  Object.assign(form, {
-    ...item
-  });
-}
 
 
 </script>
@@ -87,14 +64,14 @@ const onUpdateForm = async (item :Entity) => {
         <template #content>
           <Content
             :todolist="todolist"
-            @delete="onDelete"
-            @update="onUpdate"
-            @update-form="onUpdateForm"
+            @delete="onDeleteTodolist"
+            @update="onUpdateTodolist"
+            @update-form="fillForm"
           />
         </template>
 
         <template #filter>
-          <Filter @filter-by-category="onFilterCategory" @filter-search="onFilterSearch"/>
+          <Filter @filter-by-category="onFilterCategoryTodolist" @filter-search="onFilterSearchTodolist"/>
         </template>
         <template #progress>
           <Progress
