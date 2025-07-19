@@ -5,7 +5,7 @@ const route : RouteRecordRaw[] = [
     {
         path: '/todolist',
         component: App,
-        name: 'Todolist'
+        name: 'todolist'
     }
 ];
 
