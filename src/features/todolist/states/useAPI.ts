@@ -1,15 +1,15 @@
-import {reactive, ref, type Reactive, type Ref} from 'vue';
+import {reactive, type Reactive} from 'vue';
 import type { List } from '@todolist/types/List';
 import * as api from '@todolist/api/mockV1';
 import type { APIError } from '@todolist/types/APIError';
 import type { Entity } from '@todolist/types/Entity';
 import type { Category } from '@todolist/types/Category';
+import useLoading from '@states/useLoading';
 
 export default function useAPI() {
-    const isLoading :Ref<boolean> = ref<boolean>(false)
+    const { isLoading, setLoading } = useLoading(false);
 
-    const todolist :Reactive<List> = reactive<List>([])
-    
+    const todolist :Reactive<List> = reactive<List>([]);
 
     const errors = reactive<APIError>({
         action: 'getAll' , // default,
@@ -18,7 +18,7 @@ export default function useAPI() {
     })
 
     const loadTodolist = async () => {
-        isLoading.value = true
+        setLoading(true)
         try {
             const data = await api.getAll()
             const transformed = data.map(item => ({
@@ -36,7 +36,7 @@ export default function useAPI() {
                 errors.message = error?.message || 'Sesuatu ada yang salah tolong coba lagi'
             }
         } finally {
-            isLoading.value = false
+            setLoading(false)
         }
     }
 
@@ -54,7 +54,7 @@ export default function useAPI() {
     }
 
     const filterTodoByCategory = async (value: Category | null | 'Selesai') => {
-        isLoading.value = true;
+        setLoading(true)
         try {
             let data;
             if (value === null) {
@@ -77,12 +77,12 @@ export default function useAPI() {
             errors.message = error.message || 'Sesuatu ada yang salah, tolong coba lagi';
             }
         } finally {
-            isLoading.value = false;
+            setLoading(false)
         }
     };
 
     const filterTodoBySearch = async (value: string) => {
-        isLoading.value = true;
+        setLoading(true)
         try {
             let data;
             if (value === '') {
@@ -103,7 +103,7 @@ export default function useAPI() {
             errors.message = error.message || 'Sesuatu ada yang salah, tolong coba lagi';
             }
         } finally {
-            isLoading.value = false;
+            setLoading(false)
         }
     };
 
@@ -136,6 +136,24 @@ export default function useAPI() {
             }
         }
     }
+    // Event relate with using API and listen the emits from components 
+    const onFilterCategoryTodolist = async (value :Category|null|'Selesai') => {
+        await filterTodoByCategory(value)
+    }
+
+    const onFilterSearchTodolist = async (value : string) => {
+        await filterTodoBySearch(value)
+    }
+
+    const onUpdateTodolist = async (item :Entity) => {
+        await updateTodolist(item.id, item);
+    }
+
+
+    const onDeleteTodolist = async (item :Entity) => {
+        await deleteTodolist(item.id);
+    }
+
 
     return {
         isLoading,
@@ -147,6 +165,11 @@ export default function useAPI() {
         updateTodolist,
         deleteTodolist,
         filterTodoByCategory,
-        filterTodoBySearch
+        filterTodoBySearch,
+        
+        onUpdateTodolist,
+        onDeleteTodolist,
+        onFilterCategoryTodolist,
+        onFilterSearchTodolist
     }
 }
