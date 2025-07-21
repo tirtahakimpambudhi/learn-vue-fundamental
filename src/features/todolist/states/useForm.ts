@@ -7,6 +7,7 @@ import { schema } from "@todolist/validation/schema";
 import {v4 as uuidv4} from "uuid";
 import { useAPIStore } from "@todolist/stores/useAPIStore";
 import type { Entity } from "../types/Entity";
+import useSubmit from "@/states/useSubmit";
 
 export default function useForm() {
 
@@ -26,10 +27,10 @@ export default function useForm() {
 
     const errors = reactive<ZodError>({});
 
-    const isSubmit = ref<boolean>(false);
+    const { isSubmit, setSubmit } = useSubmit(false);
 
     const onSubmit = async (_: Event) => {
-        isSubmit.value = true;
+        setSubmit(true)
         try {
             // Validation the value form
             schema.parse(form)
@@ -73,14 +74,21 @@ export default function useForm() {
                 handleZodError(error, errors );
             }
         } finally {
-            isSubmit.value = false;
+            setSubmit(false);
         }
     }
- 
+    
+    const fillForm = async (item :Entity) => {
+        item.updatedAt = new Date()
+        Object.assign(form, {
+            ...item
+        });
+    }
     return {
         form,
         isSubmit,
         onSubmit,
-        errors
+        errors,
+        fillForm
     }
 }
