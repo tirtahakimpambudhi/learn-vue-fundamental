@@ -31,23 +31,6 @@ const router = createRouter({
     ]
 })
 
-// import App from '@pages/App.vue'
-//
-// createApp(App).mount('#app')
-
-// import Composition from "@pages/Composition.vue";
-//
-// createApp(Composition).mount('#app')
-
-
-// import TypesData from "@pages/TypesData.vue";
-//
-// createApp(TypesData).mount(
-//     '#app'
-// )
-
-// import Form from "@pages/Form.vue";
-// import Computed from "@pages/Computed.vue";
 
 app.use(pinia)
 app.use(router)
