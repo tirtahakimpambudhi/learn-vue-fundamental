@@ -12,7 +12,8 @@
       "@states/*": ["./states/*"],
       "@handlers/*": ["./handlers/*"],
       "@todolist/*": ["./features/todolist/*"],
-      "@learn/*": ["./features/learn/*"]
+      "@learn/*": ["./features/learn/*"],
+      "@codeinaja-users/*": ["./features/codeinaja-users/*"]
     },
 
     /* Linting */
