@@ -13,7 +13,9 @@
       "@types/*": ["./types/*"],
       "@pages/*": ["./pages/*"],
       "@states/*": ["./states/*"],
-      "@handlers/*": ["./handlers/*"]
+      "@handlers/*": ["./handlers/*"],
+      "@todolist/*": ["./features/todolist/*"],
+      "@learn/*": ["./features/learn/*"]
     }
   },
 }
