@@ -21,7 +21,9 @@ export default defineConfig({
           "@types": resolve(__dirname,"./src/types"),
           "@pages": resolve(__dirname, "./src/pages"),
           "@states": resolve(__dirname, "./src/states"),
-          "@handlers": resolve(__dirname, "./src/handlers")
+          "@handlers": resolve(__dirname, "./src/handlers"),
+          "@todolist": resolve(__dirname, "./src/features/todolist"),
+          "@learn": resolve(__dirname, "./src/features/learn"),
       }
     }
 })
