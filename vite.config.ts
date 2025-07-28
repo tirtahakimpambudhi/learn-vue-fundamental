@@ -24,6 +24,7 @@ export default defineConfig({
           "@handlers": resolve(__dirname, "./src/handlers"),
           "@todolist": resolve(__dirname, "./src/features/todolist"),
           "@learn": resolve(__dirname, "./src/features/learn"),
+          "@codeinaja-users": resolve(__dirname, "./src/features/codeinaja-users"),
       }
     }
 })
